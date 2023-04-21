@@ -1,8 +1,10 @@
 import os
 import csv
 
+#finding the budget csv file
 budget_csv = os.path.join('Resources', 'budget_data.csv')
 
+#making open empty containers and setting their initial value to zero, to be referenced later for total months, profits, change in profits, greatest increase and greatest decrease
 day = []
 profit = []
 profit_change = []
@@ -12,6 +14,7 @@ total_profit = 0
 total_profit_change = 0
 initial_profit = 0
 
+#reading the actual csv file and looping through it
 with open(budget_csv) as finances:
 	csv_reader = csv.reader(finances, delimiter = ",")
 	csv_header = next(csv_reader)
@@ -41,6 +44,8 @@ with open(budget_csv) as finances:
 		inc_date = day[profit_change.index(greatest_inc)]
 		dec_date = day[profit_change.index(greatest_dec)]
 
+#print screens for terminal display
+
 	print("----------------------------------------------------------")
 	print("Financial Analysis")
 	print("----------------------------------------------------------")
@@ -50,6 +55,8 @@ with open(budget_csv) as finances:
 	print("Greatest Increase in Profits: " + str(inc_date) + " ($" + str(greatest_inc) + ")")
 	print("Greatest Decrease in Profits: " + str(dec_date) + " ($" + str(greatest_dec)+ ")")
 	print("----------------------------------------------------------")
+
+#my attempt to get the same display data to write over to a txt file in the analysis folder
 
 output = os.path.join("analysis", "analysis.txt")
 with open(output, 'w') as text:
